@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Specified Button Demo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #f5f5f5;
+      font-family: Roboto, Arial, "Noto Sans TC", sans-serif;
+      color: #2f2f2f;
+    }
+
+    .page {
+      width: 760px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #eaeaea;
+      padding: 20px 26px 30px;
+    }
+
+    .header {
+      height: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .title {
+      font-size: 13px;
+      font-weight: 400;
+      color: #707070;
+    }
+
+    /* Specified button: height 22px, radius 8px, white background, 1px #2f2f2f outline */
+    .info-button {
+      height: 22px;
+      min-width: 88px;
+      padding: 0 12px;
+      border: 1px solid #2f2f2f;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #2f2f2f;
+      font-family: Roboto, Arial, "Noto Sans TC", sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 20px;
+      cursor: pointer;
+    }
+
+    .info-button:hover {
+      background: #f3f3f3;
+    }
+
+    .info-button:active {
+      background: #e8e8e8;
+    }
+
+    .image-frame {
+      width: 496px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #ffe1bc;
+    }
+
+    .preview-image {
+      width: 450px;
+      height: 240px;
+      margin: 0 auto;
+      border: 1px solid #dddddd;
+      background:
+        linear-gradient(rgba(255, 176, 92, 0.25), rgba(255, 176, 92, 0.25)),
+        linear-gradient(135deg, #f5b36e 0%, #f5d6a8 38%, #9cc3d5 39%, #6f9db5 54%, #d8894b 55%, #a8572f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-image::before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      right: -30px;
+      bottom: 40px;
+      height: 12px;
+      background: #b75d35;
+      transform: rotate(-9deg);
+    }
+
+    .preview-image::after {
+      content: "Default 450×240";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4b4bff;
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    .detail-box {
+      display: none;
+      width: 496px;
+      margin: 18px auto 0;
+      padding: 10px 12px;
+      border: 1px solid #eaeaea;
+      background: #ffffff;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #2f2f2f;
+    }
+
+    .detail-box.show {
+      display: block;
+    }
+
+    .detail-row {
+      padding: 3px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      color: #707070;
+      display: inline-block;
+      min-width: 72px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="header">
+      <div class="title">預覽圖片</div>
+      <button id="showInfoBtn" class="info-button" type="button">查看資訊</button>
+    </div>
+
+    <section class="image-frame">
+      <div class="preview-image" role="img" aria-label="Preview image placeholder"></div>
+    </section>
+
+    <section id="detailBox" class="detail-box" aria-live="polite">
+      <div class="detail-row"><span class="label">拍攝日期：</span>2017/10/12</div>
+      <div class="detail-row"><span class="label">檔案類型：</span>JPG</div>
+      <div class="detail-row"><span class="label">檔案大小：</span>456.97 KB</div>
+      <div class="detail-row"><span class="label">圖片尺寸：</span>450 × 240 px</div>
+      <div class="detail-row"><span class="label">存放路徑：</span>DesignCenter / Sample / Image</div>
+    </section>
+  </main>
+
+  <script>
+    const button = document.getElementById("showInfoBtn");
+    const detailBox = document.getElementById("detailBox");
+
+    button.addEventListener("click", function () {
+      detailBox.classList.toggle("show");
+      button.textContent = detailBox.classList.contains("show") ? "收起資訊" : "查看資訊";
+    });
+  </script>
+</body>
+</html>
